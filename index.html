@@ -41,8 +41,8 @@
 
 <!-- The JS SDK Login Button -->
 
-<fb:login-button scope="pages_read_engagement,pages_show_list,instagram_manage_insights,instagram_basic" onlogin="checkLoginState();">
-</fb:login-button>
+
+<div class="fb-login-button" data-width="" data-size="medium" data-button-type="continue_with" data-layout="default" data-auto-logout-link="false" data-use-continue-as="false" data-scope="pages_read_engagement,pages_show_list,instagram_manage_insights,instagram_basic"></div>
 
 
 <div id="status">
@@ -70,7 +70,7 @@
      var js, fjs = d.getElementsByTagName(s)[0];
      if (d.getElementById(id)) {return;}
      js = d.createElement(s); js.id = id;
-     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     js.src = "https://connect.facebook.net/pt_BR/sdk.js";
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
 </script>
