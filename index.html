@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Facebook Login JavaScript Example 2</title>
+<title>Facebook Login JavaScript Brandlovrs</title>
 <meta charset="UTF-8">
 </head>
 <body>
@@ -13,8 +13,7 @@
     if (response.status === 'connected') {   // Logged into your webpage and Facebook.
       testAPI();  
     } else {                                 // Not logged into your webpage or we are unable to tell.
-      document.getElementById('status').innerHTML = 'Please log ' +
-        'into this webpage.';
+      document.getElementById('status').innerHTML = '##### Não conectado #####';
     }
   }
 
@@ -26,27 +25,14 @@
   }
 
 
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '448559160028138',
-      cookie     : true,                     // Enable cookies to allow the server to access the session.
-      xfbml      : true,                     // Parse social plugins on this webpage.
-      version    : 'v15.0'           // Use this Graph API version for this call.
-    });
-
-
-    FB.getLoginStatus(function(response) {   // Called after the JS SDK has been initialized.
-      statusChangeCallback(response);        // Returns the login status.
-    });
-  };
  
   function testAPI() {                      // Testing Graph API after login.  See statusChangeCallback() for when this call is made.
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
       console.log('Reponse name: ' + response.name);
-      console.log('Reponse email: ' + response.email);
-      document.getElementById('status').innerHTML =
-        'Thanks for logging in, ' + response.name + '!';
+
+      document.getElementById('status').innerHTML = '******** Conectado *********** <br>' + 'Nome: '+ response.name;
+
     });
   }
 
@@ -55,7 +41,7 @@
 
 <!-- The JS SDK Login Button -->
 
-<fb:login-button scope="pages_read_engagement,pages_show_list,instagram_manage_insights,instagram_basic,instagram_content_publish" onlogin="checkLoginState();">
+<fb:login-button scope="pages_read_engagement,pages_show_list,instagram_manage_insights,instagram_basic" onlogin="checkLoginState();">
 </fb:login-button>
 
 
@@ -63,6 +49,30 @@
 </div>
 
 <!-- Load the JS SDK asynchronously -->
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '448559160028138',
+      cookie     : true,                     // Enable cookies to allow the server to access the session.
+      xfbml      : true,                     // Parse social plugins on this webpage.
+      version    : 'v15.0'           // Use this Graph API version for this call.
+    });
+
+    FB.AppEvents.logPageView();   
+
+    FB.getLoginStatus(function(response) {   // Called after the JS SDK has been initialized.
+      statusChangeCallback(response);        // Returns the login status.
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
 </body>
 </html>
